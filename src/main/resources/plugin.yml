@@ -1,0 +1,9 @@
+name: MineBoss
+version: '${project.version}'
+main: run.tere.plugin.mineboss.MineBoss
+api-version: 1.16
+authors: [ tererun ]
+description: MineBoss
+commands:
+  mineboss:
+    description: mineboss
