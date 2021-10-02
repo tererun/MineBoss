@@ -34,7 +34,7 @@ public class MineBossSpawnScheduler extends BukkitRunnable {
             this.world.spawnEntity(LocationUtil.getCenterLocation(portalLocation.clone().add(-3, 1, 0)), EntityType.ENDER_CRYSTAL);
             this.world.spawnEntity(LocationUtil.getCenterLocation(portalLocation.clone().add(0, 1, -3)), EntityType.ENDER_CRYSTAL);
             DragonBattle dragonBattle = this.world.getEnderDragonBattle();
-            dragonBattle.resetCrystals();
+            dragonBattle.initiateRespawn();
             this.world.playSound(this.fromLocation, Sound.ENTITY_GENERIC_EXPLODE, 1F, 1F);
             this.world.playSound(this.fromLocation, Sound.ENTITY_ENDER_DRAGON_AMBIENT, 1F, 1F);
             this.world.spawnParticle(Particle.EXPLOSION_HUGE, this.animEndRodLocation, 30, 5, 5, 5, 1);
