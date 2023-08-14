@@ -19,7 +19,7 @@ public class ShopHandler {
 
     static {
         shopItems = new ArrayList<>();
-        shopItems.add(new ShopItem("RevivalPowder", ItemStackUtil.getRevivalPowder(), 5000));
+        shopItems.add(new ShopItem("RevivalPowder", ItemStackUtil.createRevivalPowder(), 5000));
     }
 
     public ShopHandler() {

@@ -1,6 +1,5 @@
 package run.tere.plugin.mineboss.listeners;
 
-import io.github.bananapuncher714.nbteditor.NBTEditor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -15,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import run.tere.plugin.mineboss.MineBoss;
 import run.tere.plugin.mineboss.schedulers.MineBossSpawnScheduler;
 import run.tere.plugin.mineboss.utils.ChatUtil;
+import run.tere.plugin.mineboss.utils.ItemStackUtil;
 
 public class MineBossListener implements Listener {
     @EventHandler
@@ -44,7 +44,7 @@ public class MineBossListener implements Listener {
         Block block = e.getBlockPlaced();
         Location blockLocation = block.getLocation();
         World blockWorld = block.getWorld();
-        if (handItem.getType().equals(Material.DRAGON_EGG) && NBTEditor.contains(handItem, "MineBossItem") && NBTEditor.getString(handItem, "MineBossItem").equalsIgnoreCase("SpawnDragonEgg")) {
+        if (ItemStackUtil.getMineBossItemKey(handItem).equalsIgnoreCase("SpawnDragonEgg")) {
             if (!blockWorld.getEnvironment().equals(World.Environment.THE_END)) {
                 ChatUtil.sendMessage(player, "§c§oこのたまごはエンドでのみ置けるようだ。");
                 e.setCancelled(true);

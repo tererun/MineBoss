@@ -8,6 +8,7 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import run.tere.framework.InventoryBuilderProvider;
 import run.tere.plugin.mineboss.commands.MineBossCommand;
 import run.tere.plugin.mineboss.configs.ConfigHandler;
 import run.tere.plugin.mineboss.handlers.MineBossHandler;
@@ -38,6 +39,7 @@ public final class MineBoss extends JavaPlugin {
         this.registerRecipes();
         getServer().getPluginManager().registerEvents(new MineBossListener(), this);
         getCommand("mineboss").setExecutor(new MineBossCommand());
+        InventoryBuilderProvider.register(plugin);
     }
 
     private boolean setupEconomy() {
@@ -53,13 +55,13 @@ public final class MineBoss extends JavaPlugin {
     }
 
     private void registerRecipes() {
-        ShapedRecipe shapedRecipe = new ShapedRecipe(new NamespacedKey(plugin, "mb_spawn_dragon_egg"), ItemStackUtil.getSpawnDragonEgg());
+        ShapedRecipe shapedRecipe = new ShapedRecipe(new NamespacedKey(plugin, "mb_spawn_dragon_egg"), ItemStackUtil.createSpawnDragonEgg());
         shapedRecipe.shape(
                 "GCG",
                 "CGC",
                 "GCG"
         );
-        shapedRecipe.setIngredient('G', new RecipeChoice.ExactChoice(ItemStackUtil.getRevivalPowder()));
+        shapedRecipe.setIngredient('G', new RecipeChoice.ExactChoice(ItemStackUtil.createRevivalPowder()));
         shapedRecipe.setIngredient('C', Material.END_CRYSTAL);
         Bukkit.addRecipe(shapedRecipe);
     }
