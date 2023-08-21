@@ -44,7 +44,9 @@ public class MineBossListener implements Listener {
         Block block = e.getBlockPlaced();
         Location blockLocation = block.getLocation();
         World blockWorld = block.getWorld();
-        if (ItemStackUtil.getMineBossItemKey(handItem).equalsIgnoreCase("SpawnDragonEgg")) {
+        String bossItemKey = ItemStackUtil.getMineBossItemKey(handItem);
+        if (bossItemKey == null) return;
+        if (bossItemKey.equalsIgnoreCase("SpawnDragonEgg")) {
             if (!blockWorld.getEnvironment().equals(World.Environment.THE_END)) {
                 ChatUtil.sendMessage(player, "§c§oこのたまごはエンドでのみ置けるようだ。");
                 e.setCancelled(true);

@@ -55,15 +55,18 @@ public final class MineBoss extends JavaPlugin {
     }
 
     private void registerRecipes() {
-        ShapedRecipe shapedRecipe = new ShapedRecipe(new NamespacedKey(plugin, "mb_spawn_dragon_egg"), ItemStackUtil.createSpawnDragonEgg());
-        shapedRecipe.shape(
-                "GCG",
-                "CGC",
-                "GCG"
-        );
-        shapedRecipe.setIngredient('G', new RecipeChoice.ExactChoice(ItemStackUtil.createRevivalPowder()));
-        shapedRecipe.setIngredient('C', Material.END_CRYSTAL);
-        Bukkit.addRecipe(shapedRecipe);
+        NamespacedKey spawnDragonEggRecipeKey = new NamespacedKey(plugin, "mb_spawn_dragon_egg");
+        if (Bukkit.getRecipe(spawnDragonEggRecipeKey) == null) {
+            ShapedRecipe shapedRecipe = new ShapedRecipe(spawnDragonEggRecipeKey, ItemStackUtil.createSpawnDragonEgg());
+            shapedRecipe.shape(
+                    "GCG",
+                    "CGC",
+                    "GCG"
+            );
+            shapedRecipe.setIngredient('G', new RecipeChoice.ExactChoice(ItemStackUtil.createRevivalPowder()));
+            shapedRecipe.setIngredient('C', Material.END_CRYSTAL);
+            Bukkit.addRecipe(shapedRecipe);
+        }
     }
 
     public static MineBoss getPlugin() {
